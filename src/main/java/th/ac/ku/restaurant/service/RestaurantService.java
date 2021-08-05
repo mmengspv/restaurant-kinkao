@@ -6,6 +6,7 @@ import th.ac.ku.restaurant.model.Restaurant;
 import th.ac.ku.restaurant.repository.RestaurantRepository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class RestaurantService {
@@ -22,11 +23,11 @@ public class RestaurantService {
         return restaurant;
     }
 
-    public Restaurant getRestaurant(int id){
+    public Restaurant getRestaurant(UUID id){
         return repository.findById(id).get();
     }
 
-    public Restaurant update(int id, Restaurant reqBody){
+    public Restaurant update(UUID id, Restaurant reqBody){
         Restaurant restaurant = repository.findById(id).get();
 
         restaurant.setName(reqBody.getName());
@@ -38,7 +39,7 @@ public class RestaurantService {
         return restaurant;
     }
 
-    public Restaurant delete(int id){
+    public Restaurant delete(UUID id){
         Restaurant restaurant = repository.findById(id).get();
         repository.deleteById(id);
         return restaurant;

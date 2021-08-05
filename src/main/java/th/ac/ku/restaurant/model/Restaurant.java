@@ -1,22 +1,24 @@
 package th.ac.ku.restaurant.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 public class Restaurant {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(generator = "UUID")
+    @Type(type = "org.hibernate.type.UUIDCharType")
+    @Column(columnDefinition = "CHAR(36)")
+    private UUID id;
 
     private String name;
     private String address;
     private String phone;
     private int numSeats;
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -36,7 +38,7 @@ public class Restaurant {
         return numSeats;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
